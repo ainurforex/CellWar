@@ -47,7 +47,7 @@ public class CellMachine {
     public void randomCells() {
         for (int i = 1; i < 1000 - 1; i++) {
             for (int j = 1; j < 1000 - 1; j++) {
-                if ((int) (Math.random() * 5) == 1) {
+                if ((int) (Math.random() * 20) == 1) {
                     CellMachine.cells[i][j][z] = 1;
                 } else {
                     CellMachine.cells[i][j][z] = 0;
@@ -70,20 +70,14 @@ public class CellMachine {
                 if (cells[i][j][z] == 0 && summ8cells(i, j) == 3) {
                     cells[i][j][z1] = 1;
                 }
-                if (cells[i][j][z] == 1 && summ8cells(i, j) < 2) {
+                if (cells[i][j][z] == 1 && summ8cells(i, j) < 2|| summ8cells(i, j) > 3) {
                     cells[i][j][z1] = 0;
                 }
 
-                if (cells[i][j][z] == 1 && summ8cells(i, j) > 3) {
-                    cells[i][j][z1] = 0;
-                }
-                if (cells[i][j][z] == 1 && summ8cells(i, j) == 2) {
+               if (cells[i][j][z] == 1 && summ8cells(i, j) == 2||summ8cells(i, j) == 3) {
                     cells[i][j][z1] = 1;
                 }
 
-                if (cells[i][j][z] == 1 && summ8cells(i, j) == 3) {
-                    cells[i][j][z1] = 1;
-                }
             }
 
 
@@ -115,7 +109,5 @@ public class CellMachine {
         }
     }
 
-    public static int getZ() {
-        return z;
-    }
+
 }

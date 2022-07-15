@@ -24,11 +24,12 @@ private void stepArray() {
     CellMachine.cellsCalculate();
     draw.drawArray();
 }
+
     private void stepUntil() {
-        for (int i = 0; i <10 ; i++)  {
+
             stepArray();
 
-        }
+
     }
 
     @FXML
