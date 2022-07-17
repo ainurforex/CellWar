@@ -20,15 +20,17 @@ public class CellWarController {
 
 
 private void stepArray() {
+
     CellMachine draw=new CellMachine(canvas);
     CellMachine.cellsCalculate();
     draw.drawArray();
 }
 
     private void stepUntil() {
+        for (int i = 0;; i++) {
 
             stepArray();
-
+        }
 
     }
 
@@ -39,7 +41,8 @@ private void stepArray() {
 
     @FXML
     private void buttonStepUntil(ActionEvent actionEvent) {
-       stepUntil();
+        Thread s = new Thread(() -> stepUntil());
+        s.start();
     }
     @FXML
     private void randomCells(ActionEvent actionEvent) {
