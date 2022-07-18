@@ -24,33 +24,31 @@ public class CellMachine {
         for (int i = 1; i < 1000 - 1; i++) {
             for (int j = 1; j < 1000 - 1; j++) {
                 int cellCentre = CellMachine.cells[i][j][z];
-                if (cellCentre == 1) {
-                    canvas.getGraphicsContext2D().getPixelWriter().setColor(i, j, Color.RED);
+                switch (cellCentre) {
+                    case (1):
+                        canvas.getGraphicsContext2D().getPixelWriter().setColor(i, j, Color.RED);
+                        break;
+                    case (2):
+                        canvas.getGraphicsContext2D().getPixelWriter().setColor(i, j, Color.BLUE);
+                        break;
+                    case (0):
+                        canvas.getGraphicsContext2D().getPixelWriter().setColor(i, j, Color.WHITE);
+                        if (summ8cellsType(i, j, 1) > 0 && summ8cellsType(i, j, 2) == 0) {
+                            canvas.getGraphicsContext2D().getPixelWriter().setColor(i, j, Color.GOLD);
+                        }
+                        if (summ8cellsType(i, j, 2) > 0 && summ8cellsType(i, j, 1) == 0) {
+                            canvas.getGraphicsContext2D().getPixelWriter().setColor(i, j, Color.TURQUOISE);
+                        }
+                        break;
                 }
-                if (cellCentre == 2) {
-                    canvas.getGraphicsContext2D().getPixelWriter().setColor(i, j, Color.BLUE);
-                }
-                if (cellCentre == 0) {
-                    canvas.getGraphicsContext2D().getPixelWriter().setColor(i, j, Color.WHITE);
-                    if (summ8cellsType(i, j, 1) > 0 && summ8cellsType(i, j, 2) == 0) {
-                        canvas.getGraphicsContext2D().getPixelWriter().setColor(i, j, Color.GOLD);
-                    }
-                    if (summ8cellsType(i, j, 2) > 0 && summ8cellsType(i, j, 1) == 0) {
-                        canvas.getGraphicsContext2D().getPixelWriter().setColor(i, j, Color.TURQUOISE);
-                    }
-                }
-
-
             }
-
-
         }
     }
 
 
     public void drawCellMouse(int mouseX, int mouseY) {
-        int type=((int) (Math.random() * 2))+1;
-        CellMachine.arrayWright(mouseX - 15, mouseY - 15,type);
+        int type = ((int) (Math.random() * 2)) + 1;
+        arrayWright(mouseX - 15, mouseY - 15, type);
         if (type == 1) {
             canvas.getGraphicsContext2D().getPixelWriter().setColor(mouseX - 15, mouseY - 15, Color.RED);
         }
@@ -61,7 +59,7 @@ public class CellMachine {
     }
 
 
-    public static void arrayWright(int x, int y,int type) {
+    public static void arrayWright(int x, int y, int type) {
         cells[x][y][z] = type;
     }
 
@@ -82,15 +80,11 @@ public class CellMachine {
                         CellMachine.cells[i][j][z] = 0;
                         break;
                 }
-
             }
         }
-
     }
 
-    public void putRandomTypeCells(int iteration,int type) {
-
-
+    public void putRandomTypeCells(int iteration, int type) {
         for (int i = 0; i < iteration; i++) {
             int randX = (int) (Math.random() * 998) + 1;
             int randY = (int) (Math.random() * 998) + 1;
@@ -103,11 +97,7 @@ public class CellMachine {
                     teamBlue++;
                 }
             }
-
         }
-
-
-
     }
 
 
@@ -166,7 +156,6 @@ public class CellMachine {
     }
 
 
-
     public static int summ8cellsType(int x, int y, int type) {
         int summ = 0;
         if (cells[x - 1][y - 1][z] == type) {
@@ -193,9 +182,7 @@ public class CellMachine {
         if (cells[x + 1][y + 1][z] == type) {
             summ++;
         }
-
         return summ;
-
     }
 
     private static void clearArray() {
@@ -209,7 +196,6 @@ public class CellMachine {
                 if (cells[i][j][z] == 2) {
                     teamBlue++;
                 }
-
                 cells[i][j][z] = 0;
             }
         }
